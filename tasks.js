@@ -114,7 +114,10 @@ function add(todo, arr){
   
 }
 function remove(toBeRemoved, arr){
-  if(typeof toBeRemoved === 'undefined'){
+  if(toBeRemoved < 1 || toBeRemoved > arr.length){
+    console.log("number does not exist")
+  }
+  else if(typeof toBeRemoved === 'undefined'){
     arr.pop()
   }else{
     arr.splice(toBeRemoved -1,toBeRemoved)
