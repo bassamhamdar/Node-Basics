@@ -39,6 +39,7 @@ function startApp(name){
 function onDataReceived(text) {
   var todo = text.split(' ')[1];
   var name = text.split(' ')[1];
+  var toBeRemoved = text.split(' ')[1];
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
@@ -54,6 +55,8 @@ function onDataReceived(text) {
     }else{
       add(todo,arr)
     }
+  }else if(text.split(' ')[0].trim() === 'remove'){
+    remove(toBeRemoved,arr)
   }
   else{
     unknownCommand(text);
@@ -95,7 +98,7 @@ function quit(){
 
 // help function lists all the possible commands
 function help(){
-  console.log('all possible commands:\nhello\nquit\n');
+  console.log('all possible commands:\nhello\nquit\nlist\nadd\nremove');
 }
 function list(arr){
   for(i=0; i <arr.length; i++){
@@ -109,6 +112,14 @@ function add(todo, arr){
 
     arr.push(todo.trim())
   
+}
+function remove(toBeRemoved, arr){
+  if(typeof toBeRemoved === 'undefined'){
+    arr.pop()
+  }else{
+    arr.splice(toBeRemoved -1,toBeRemoved)
+  }
+
 }
 
 // The following line starts the application
