@@ -57,6 +57,8 @@ function onDataReceived(text) {
     }
   }else if(text.split(' ')[0].trim() === 'remove'){
     remove(toBeRemoved,arr)
+  }else if(text.split(' ')[0].trim() === 'edit'){
+    edit(text, arr)
   }
   else{
     unknownCommand(text);
@@ -124,6 +126,19 @@ function remove(toBeRemoved, arr){
   }
 
 }
+function edit(text, arr){
+  console.log(text.split(' ')[1] == 'number')
+if(typeof text.split(' ')[1] === 'undefined'){
+  console.log('error')
+}else if(typeof text.split(' ')[1] =='number'){
+  
+  for(i=2; i<text.split(' '); i++){
+    arr[text.split(' ')[1].trim()] += text.split(' ')[i]
+  }
+}else {
+  arr[arr.length-1] = text.split(' ')[1].trim()
+  }
 
+}
 // The following line starts the application
 startApp("Bassam Hamdar")
