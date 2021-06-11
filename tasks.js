@@ -42,6 +42,8 @@ function onDataReceived(text) {
     hello(text);
   }else if(text.trim() === 'help'){
     help();
+  }else if(text.trim() === 'list'){
+    list()
   }
   else{
     unknownCommand(text);
@@ -84,6 +86,12 @@ function quit(){
 // help function lists all the possible commands
 function help(){
   console.log('all possible commands:\nhello\nquit\n');
+}
+function list(){
+  var arr = ["study", "eat","drink","live"];
+  for(i=0; i <arr.length; i++){
+    console.log(i+1, arr[i]);
+  }
 }
 
 // The following line starts the application
