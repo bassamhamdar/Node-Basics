@@ -9,6 +9,8 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+const arr = ["study", "eat","drink","live"];
+
 function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
@@ -33,8 +35,10 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+
 function onDataReceived(text) {
-  var name = text.split(' ')[1]
+  var todo = text.split(' ')[1];
+  var name = text.split(' ')[1];
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
@@ -43,7 +47,13 @@ function onDataReceived(text) {
   }else if(text.trim() === 'help'){
     help();
   }else if(text.trim() === 'list'){
-    list()
+    list(arr)
+  }else if(text.split(' ')[0].trim() === 'add'){
+    if(typeof todo === 'undefined'){
+      error()
+    }else{
+      add(todo,arr)
+    }
   }
   else{
     unknownCommand(text);
@@ -87,11 +97,18 @@ function quit(){
 function help(){
   console.log('all possible commands:\nhello\nquit\n');
 }
-function list(){
-  var arr = ["study", "eat","drink","live"];
+function list(arr){
   for(i=0; i <arr.length; i++){
     console.log(i+1, arr[i]);
   }
+}
+function error(){
+  console.log('error')
+}
+function add(todo, arr){
+
+    arr.push(todo.trim())
+  
 }
 
 // The following line starts the application
